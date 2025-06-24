@@ -10,7 +10,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section id="accueil" className="min-h-screen flex items-center bg-gradient-bubble relative overflow-hidden">
+    <section id="accueil" className="min-h-screen flex items-center bg-gradient-bubble relative overflow-hidden pt-16 sm:pt-20">
       {/* Bulles flottantes */}
       <div className="bubble bubble-1"></div>
       <div className="bubble bubble-2"></div>

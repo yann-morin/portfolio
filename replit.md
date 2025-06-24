@@ -103,6 +103,8 @@ This is a professional showcase website for Yann Morin, a freelance web develope
 ```
 Changelog:
 - June 24, 2025. Initial setup
+- June 24, 2025. Updated to modern pastel theme with floating bubbles
+- June 24, 2025. Improved hero section mobile responsiveness and fixed navbar overlap
 ```
 
 ## User Preferences
