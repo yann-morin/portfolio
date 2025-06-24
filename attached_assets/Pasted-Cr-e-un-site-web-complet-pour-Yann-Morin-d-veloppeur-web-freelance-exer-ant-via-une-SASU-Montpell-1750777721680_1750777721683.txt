@@ -1,0 +1,72 @@
+Crée un site web complet pour Yann Morin, développeur web freelance exerçant via une SASU à Montpellier. Le site doit servir de vitrine professionnelle pour vendre ses services de création de sites vitrines à destination des petits commerçants, indépendants et artisans.
+
+Tu es libre de choisir la technologie front (HTML/CSS/JS, React, Tailwind, etc.) ou backend (PHP, Node.js, etc.) que tu juges la plus adaptée pour obtenir un site :
+
+rapide
+
+responsive
+
+clairement orienté vente
+
+facile à héberger par un développeur indépendant
+
+🎯 Objectifs :
+Mettre en avant une offre commerciale simple et accessible
+
+Inspirer confiance (freelance local, réactif, transparent)
+
+Proposer une navigation fluide avec appels à l’action clairs
+
+Permettre aux visiteurs de demander un devis facilement
+
+💼 Contexte freelance :
+Yann Morin est également salarié chez ACSEO, et développe son activité en freelance uniquement en dehors de ses heures de travail, avec l’accord de son entreprise
+
+Il propose la création de sites vitrines efficaces, clés en main, pour des commerçants et pros locaux
+
+Il vise une clientèle non-technique, avec des besoins simples mais réels (présence web, infos, formulaire, visibilité locale)
+
+🧱 Structure suggérée du site :
+Tu es libre de l’organiser, mais voici les éléments attendus :
+
+Une page d’accueil avec :
+
+un slogan clair
+
+aperçu des offres
+
+appel à l’action
+
+Une page/services présentant :
+
+une offre Pack BASIC (site 1 page) et Pack PRO (site 3 à 5 pages)
+
+des services optionnels (rédaction, SEO local, maintenance, hébergement)
+
+Une page portfolio ou projets (réalisations, maquettes, cas clients)
+
+Une page de contact (formulaire fonctionnel, email pro)
+
+Une section “Pourquoi me choisir ?” ou “Ce que je vous apporte” (sans jargon)
+
+Tu peux aussi intégrer une FAQ, ou toute autre section utile à la conversion.
+
+🎨 Design :
+Tu es libre du thème visuel. Il doit rester :
+
+professionnel
+
+moderne
+
+accessible pour des utilisateurs non techniques
+
+Tu peux utiliser un thème clair, sombre, épuré, coloré... à toi de choisir ce qui fonctionne le mieux pour la cible : commerçants, artisans, indépendants.
+
+📌 Contraintes techniques :
+Pas de base de données obligatoire, mais possible si pertinent
+
+Doit être facile à déployer sur Replit ou hébergement simple (Vercel, GitHub Pages, OVH, etc.)
+
+Tu peux utiliser des outils modernes (frameworks, CMS, etc.) tant que le site reste léger et maintenable
+
+Fournis le code complet avec une structure claire par fichier. Tu peux séparer le frontend et le backend si nécessaire, et inclure les instructions pour tester ou déployer le projet.
