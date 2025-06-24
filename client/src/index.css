@@ -87,44 +87,70 @@
   .bubble {
     position: absolute;
     border-radius: 50%;
-    opacity: 0.4;
-    animation: float 8s ease-in-out infinite;
+    opacity: 0.3;
+    animation: float 10s ease-in-out infinite;
   }
   
   .bubble-1 {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     background: hsl(220, 60%, 80%);
-    top: 10%;
-    left: 10%;
+    top: 15%;
+    left: 5%;
     animation-delay: 0s;
   }
   
   .bubble-2 {
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     background: hsl(180, 60%, 80%);
-    top: 20%;
-    right: 20%;
+    top: 25%;
+    right: 10%;
     animation-delay: 2s;
   }
   
   .bubble-3 {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     background: hsl(140, 60%, 80%);
-    bottom: 20%;
-    left: 15%;
+    bottom: 25%;
+    left: 8%;
     animation-delay: 4s;
   }
   
   .bubble-4 {
-    width: 70px;
-    height: 70px;
+    width: 50px;
+    height: 50px;
     background: hsl(40, 60%, 80%);
-    bottom: 30%;
-    right: 15%;
+    bottom: 35%;
+    right: 12%;
     animation-delay: 1s;
+  }
+  
+  @media (min-width: 640px) {
+    .bubble-1 {
+      width: 80px;
+      height: 80px;
+      left: 10%;
+    }
+    
+    .bubble-2 {
+      width: 60px;
+      height: 60px;
+      right: 20%;
+    }
+    
+    .bubble-3 {
+      width: 100px;
+      height: 100px;
+      left: 15%;
+    }
+    
+    .bubble-4 {
+      width: 70px;
+      height: 70px;
+      right: 15%;
+    }
   }
 }
 
