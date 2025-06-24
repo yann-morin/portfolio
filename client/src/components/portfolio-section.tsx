@@ -32,12 +32,12 @@ export default function PortfolioSection() {
   ];
 
   return (
-    <section id="portfolio" className="py-20 bg-primary">
+    <section id="portfolio" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6">Mes dernières réalisations</h2>
-            <p className="text-xl text-light max-w-2xl mx-auto">
+            <h2 className="text-4xl font-bold mb-6 text-foreground">Mes dernières réalisations</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Découvrez quelques projets récents pour des professionnels de Montpellier et alentours
             </p>
           </div>
@@ -46,18 +46,18 @@ export default function PortfolioSection() {
             {projects.map((project) => (
               <Card
                 key={project.id}
-                className="bg-secondary overflow-hidden group hover:transform hover:scale-105 transition-all duration-300"
+                className="bg-card overflow-hidden group shadow-sm hover:shadow-md transition-all duration-200"
               >
                 <div className="relative overflow-hidden">
                   <img
                     src={project.image}
                     alt={project.alt}
-                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-full h-48 object-cover"
                   />
                 </div>
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                  <p className="text-light mb-4">{project.description}</p>
+                  <h3 className="text-xl font-semibold mb-2 text-foreground">{project.title}</h3>
+                  <p className="text-muted-foreground mb-4">{project.description}</p>
                   <div className="flex items-center justify-between">
                     <Badge variant="secondary" className="text-accent font-semibold">
                       {project.pack}

@@ -14,7 +14,7 @@ export default function Navigation() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-primary/95 backdrop-blur-sm border-b border-secondary z-50">
+    <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-b border-border z-50 shadow-sm">
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
           <div className="flex items-center space-x-3">
@@ -22,39 +22,39 @@ export default function Navigation() {
               <span className="text-white font-bold text-lg">YM</span>
             </div>
             <div>
-              <h1 className="text-xl font-semibold">Yann Morin</h1>
-              <p className="text-sm text-light">Développeur Web</p>
+              <h1 className="text-xl font-semibold text-foreground">Yann Morin</h1>
+              <p className="text-sm text-muted-foreground">Développeur Web</p>
             </div>
           </div>
           
           <div className="hidden md:flex space-x-8">
             <button
               onClick={() => scrollToSection("accueil")}
-              className="text-light hover:text-accent transition-colors"
+              className="text-muted-foreground hover:text-accent transition-colors"
             >
               Accueil
             </button>
             <button
               onClick={() => scrollToSection("services")}
-              className="text-light hover:text-accent transition-colors"
+              className="text-muted-foreground hover:text-accent transition-colors"
             >
               Services
             </button>
             <button
               onClick={() => scrollToSection("portfolio")}
-              className="text-light hover:text-accent transition-colors"
+              className="text-muted-foreground hover:text-accent transition-colors"
             >
               Portfolio
             </button>
             <button
               onClick={() => scrollToSection("pourquoi")}
-              className="text-light hover:text-accent transition-colors"
+              className="text-muted-foreground hover:text-accent transition-colors"
             >
               Pourquoi moi
             </button>
             <button
               onClick={() => scrollToSection("contact")}
-              className="text-light hover:text-accent transition-colors"
+              className="text-muted-foreground hover:text-accent transition-colors"
             >
               Contact
             </button>
@@ -63,7 +63,7 @@ export default function Navigation() {
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden text-white"
+            className="md:hidden text-foreground"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -72,35 +72,35 @@ export default function Navigation() {
         
         {/* Mobile menu */}
         {isMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-secondary">
+          <div className="md:hidden mt-4 pb-4 border-t border-border">
             <div className="flex flex-col space-y-4 mt-4">
               <button
                 onClick={() => scrollToSection("accueil")}
-                className="text-light hover:text-accent transition-colors text-left"
+                className="text-muted-foreground hover:text-accent transition-colors text-left"
               >
                 Accueil
               </button>
               <button
                 onClick={() => scrollToSection("services")}
-                className="text-light hover:text-accent transition-colors text-left"
+                className="text-muted-foreground hover:text-accent transition-colors text-left"
               >
                 Services
               </button>
               <button
                 onClick={() => scrollToSection("portfolio")}
-                className="text-light hover:text-accent transition-colors text-left"
+                className="text-muted-foreground hover:text-accent transition-colors text-left"
               >
                 Portfolio
               </button>
               <button
                 onClick={() => scrollToSection("pourquoi")}
-                className="text-light hover:text-accent transition-colors text-left"
+                className="text-muted-foreground hover:text-accent transition-colors text-left"
               >
                 Pourquoi moi
               </button>
               <button
                 onClick={() => scrollToSection("contact")}
-                className="text-light hover:text-accent transition-colors text-left"
+                className="text-muted-foreground hover:text-accent transition-colors text-left"
               >
                 Contact
               </button>
