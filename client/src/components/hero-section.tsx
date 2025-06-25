@@ -24,84 +24,84 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-hero" itemScope itemType="https://schema.org/WebPage">
-      {/* Particules flottantes */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="particle absolute animate-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 8}s`,
-              animationDuration: `${8 + Math.random() * 4}s`
-            }}
-          />
-        ))}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background" itemScope itemType="https://schema.org/WebPage">
+      {/* Grid background pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `linear-gradient(rgba(139, 92, 246, 0.3) 1px, transparent 1px),
+                           linear-gradient(90deg, rgba(139, 92, 246, 0.3) 1px, transparent 1px)`,
+          backgroundSize: '60px 60px'
+        }} />
       </div>
 
-      {/* Orbes lumineux */}
-      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/20 rounded-full blur-3xl animate-pulse-glow" />
-      <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-accent/20 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: '1s' }} />
-      <div className="absolute top-1/3 right-1/3 w-32 h-32 bg-accent-secondary/20 rounded-full blur-2xl animate-pulse-glow" style={{ animationDelay: '2s' }} />
+      {/* Modern gradient orbs */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-primary/30 to-accent/20 rounded-full blur-3xl animate-pulse-soft" />
+      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-accent-secondary/20 to-accent-tertiary/30 rounded-full blur-3xl animate-pulse-soft" style={{ animationDelay: '2s' }} />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-5xl mx-auto">
           {/* Titre principal avec effet gradient */}
           <div className={`${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.4s' }}>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight" itemProp="name">
-              <span className="gradient-text">Yann Morin</span>
-              <span className="block text-3xl md:text-5xl lg:text-6xl text-foreground/90 mt-4 font-light">
-                Développeur Web <span className="text-primary font-bold">Freelance</span>
+            <div className="mb-8">
+              <span className="inline-block px-6 py-3 bg-gradient-to-r from-primary/20 to-accent/20 border border-primary/30 rounded-full text-primary text-sm font-medium">
+                ✨ Développeur Web Freelance
+              </span>
+            </div>
+            <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-8 leading-tight" itemProp="name">
+              <span className="bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent">
+                Sites Web
+              </span>
+              <span className="block text-4xl md:text-6xl lg:text-7xl text-foreground/90 mt-4 font-light">
+                Contemporains
               </span>
             </h1>
           </div>
           
           {/* Sous-titre */}
           <div className={`${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.6s' }}>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed font-light" itemProp="description">
-              Création de sites web <span className="text-primary font-semibold">modernes</span> et 
-              <span className="text-accent font-semibold"> performants</span>.
+            <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-4xl mx-auto leading-relaxed" itemProp="description">
+              Design moderne • Développement sur mesure • Performance optimisée
+              <br />
+              <span className="text-lg md:text-xl">Votre présence digitale à Montpellier</span>
             </p>
           </div>
 
-          {/* Statistiques */}
-          <div className={`flex justify-center space-x-8 mb-10 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.8s' }}>
-            <div className="text-center">
-              <div className="flex items-center justify-center space-x-1 mb-1">
-                <Star className="h-4 w-4 text-accent-quaternary fill-current" />
-                <span className="text-2xl font-bold text-foreground">5.0</span>
+          {/* Statistics Cards */}
+          <div className={`grid grid-cols-3 gap-6 mb-12 max-w-2xl mx-auto ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.8s' }}>
+            <div className="modern-card p-6 rounded-xl text-center">
+              <div className="text-3xl font-bold text-primary mb-2">50+</div>
+              <div className="text-sm text-muted-foreground">Projets créés</div>
+            </div>
+            <div className="modern-card p-6 rounded-xl text-center">
+              <div className="text-3xl font-bold text-accent mb-2">100%</div>
+              <div className="text-sm text-muted-foreground">Clients satisfaits</div>
+            </div>
+            <div className="modern-card p-6 rounded-xl text-center">
+              <div className="flex items-center justify-center space-x-1 mb-2">
+                <Star className="h-5 w-5 text-accent-tertiary fill-current" />
+                <span className="text-3xl font-bold text-accent-tertiary">5.0</span>
               </div>
-              <p className="text-sm text-muted-foreground">Note client</p>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-primary mb-1">25+</div>
-              <p className="text-sm text-muted-foreground">Projets réalisés</p>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-accent mb-1">6 ans</div>
-              <p className="text-sm text-muted-foreground">d'expérience</p>
+              <div className="text-sm text-muted-foreground">Note moyenne</div>
             </div>
           </div>
           
-          {/* Boutons d'action */}
+          {/* Action Buttons */}
           <div className={`flex flex-col sm:flex-row gap-6 justify-center items-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '1s' }}>
             <Button 
               onClick={scrollToContact}
               size="lg" 
-              className="group glass-card hover-glow bg-primary/20 hover:bg-primary/30 text-primary border-primary/50 font-semibold px-10 py-4 rounded-2xl text-lg transition-all duration-300"
+              className="group bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white px-8 py-4 text-lg font-semibold neon-border rounded-xl transition-all duration-300"
             >
-              Démarrer votre projet
+              Démarrer un projet
               <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button 
               onClick={scrollToPortfolio}
               variant="outline" 
               size="lg"
-              className="glass-card hover-glow border-muted-foreground/30 text-foreground hover:bg-muted/20 font-semibold px-10 py-4 rounded-2xl text-lg transition-all duration-300"
+              className="modern-card border-2 border-muted text-foreground hover:bg-muted hover:text-background px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300"
             >
-              Voir mes réalisations
+              Mes réalisations
             </Button>
           </div>
           

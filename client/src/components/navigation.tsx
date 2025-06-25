@@ -26,55 +26,51 @@ export default function Navigation() {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled 
-        ? 'glass-card border-border/20 shadow-lg' 
+        ? 'modern-card border-border/30 shadow-2xl backdrop-blur-xl' 
         : 'bg-transparent'
     }`} role="navigation" aria-label="Navigation principale">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex justify-between items-center">
-          {/* Logo */}
-          <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-primary/20 rounded-2xl flex items-center justify-center hover-glow cursor-pointer group">
-              <Code className="h-6 w-6 text-primary group-hover:scale-110 transition-transform" />
+          {/* Logo contemporain */}
+          <div className="flex items-center space-x-4">
+            <div className="w-10 h-10 bg-gradient-to-r from-primary to-accent rounded-lg flex items-center justify-center cursor-pointer group neon-border">
+              <Code className="h-5 w-5 text-white group-hover:scale-110 transition-transform" />
             </div>
             <div className="hidden sm:block">
-              <h1 className="text-xl font-bold gradient-text" itemProp="name">Yann Morin</h1>
-              <p className="text-sm text-muted-foreground" itemProp="jobTitle">Développeur Web Freelance Montpellier</p>
+              <h1 className="text-xl font-bold bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent" itemProp="name">Yann Morin</h1>
+              <p className="text-xs text-muted-foreground uppercase tracking-wider" itemProp="jobTitle">Web Developer</p>
             </div>
           </div>
           
-          {/* Menu desktop */}
-          <div className="hidden md:flex items-center space-x-8">
+          {/* Menu desktop moderne */}
+          <div className="hidden md:flex items-center space-x-2">
             <button
               onClick={() => scrollToSection("hero")}
-              className="text-muted-foreground hover:text-primary transition-colors font-medium relative group"
+              className="px-4 py-2 text-muted-foreground hover:text-foreground transition-all duration-300 font-medium rounded-lg hover:bg-muted/10"
             >
               Accueil
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
             </button>
             <button
               onClick={() => scrollToSection("services")}
-              className="text-muted-foreground hover:text-primary transition-colors font-medium relative group"
+              className="px-4 py-2 text-muted-foreground hover:text-foreground transition-all duration-300 font-medium rounded-lg hover:bg-muted/10"
             >
               Services
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
             </button>
             <button
               onClick={() => scrollToSection("portfolio")}
-              className="text-muted-foreground hover:text-primary transition-colors font-medium relative group"
+              className="px-4 py-2 text-muted-foreground hover:text-foreground transition-all duration-300 font-medium rounded-lg hover:bg-muted/10"
             >
               Portfolio
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
             </button>
             <button
               onClick={() => scrollToSection("pourquoi")}
-              className="text-muted-foreground hover:text-primary transition-colors font-medium relative group"
+              className="px-4 py-2 text-muted-foreground hover:text-foreground transition-all duration-300 font-medium rounded-lg hover:bg-muted/10"
             >
-              Pourquoi
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+              À propos
             </button>
             <Button
               onClick={() => scrollToSection("contact")}
-              className="glass-card hover-glow bg-primary/20 hover:bg-primary/30 text-primary border-primary/50 font-semibold px-6 py-2 rounded-xl"
+              className="ml-4 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-300"
             >
               Contact
             </Button>

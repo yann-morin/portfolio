@@ -33,21 +33,14 @@ export default function ServicesSection() {
   };
 
   return (
-    <section id="services" className="py-20 bg-gradient-modern relative overflow-hidden" itemScope itemType="https://schema.org/Service">
-      {/* Particules de fond */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(10)].map((_, i) => (
-          <div
-            key={i}
-            className="particle absolute animate-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 6}s`,
-              animationDuration: `${6 + Math.random() * 3}s`
-            }}
-          />
-        ))}
+    <section id="services" className="py-24 bg-background relative overflow-hidden" itemScope itemType="https://schema.org/Service">
+      {/* Grid pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `linear-gradient(rgba(139, 92, 246, 0.3) 1px, transparent 1px),
+                           linear-gradient(90deg, rgba(139, 92, 246, 0.3) 1px, transparent 1px)`,
+          backgroundSize: '40px 40px'
+        }} />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">

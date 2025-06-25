@@ -3,37 +3,38 @@
 @tailwind utilities;
 
 :root {
-  /* Palette professionnelle et amicale */
-  --background: hsl(20, 30%, 97%);
-  --foreground: hsl(220, 15%, 20%);
-  --muted: hsl(20, 20%, 92%);
-  --muted-foreground: hsl(221, 10%, 50%)
-  --popover: hsl(0, 0%, 100%);
-  --popover-foreground: hsl(220, 15%, 20%);
-  --card: hsl(0, 0%, 100%);
-  --card-foreground: hsl(220, 15%, 20%);
-  --border: hsl(20, 20%, 88%);
-  --input: hsl(20, 20%, 88%);
-  --primary: hsl(210, 95%, 55%);
-  --primary-foreground: hsl(0, 0%, 100%);
-  --secondary: hsl(20, 20%, 95%);
-  --secondary-foreground: hsl(220, 15%, 30%);
-  --accent: hsl(35, 85%, 65%);
-  --accent-foreground: hsl(220, 15%, 20%);
-  --accent-secondary: hsl(280, 70%, 70%);
-  --accent-tertiary: hsl(160, 60%, 50%);
-  --accent-quaternary: hsl(15, 85%, 65%);
+  /* Design contemporain - palette moderne */
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(263, 70%, 50%);
+  --primary-foreground: hsl(0, 0%, 98%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(142, 76%, 36%);
+  --accent-foreground: hsl(355.7, 100%, 97.3%);
+  --accent-secondary: hsl(217, 91%, 60%);
+  --accent-tertiary: hsl(47, 96%, 53%);
+  --accent-quaternary: hsl(343, 100%, 70%);
   --destructive: hsl(0, 84%, 60%);
-  --destructive-foreground: hsl(0, 0%, 100%);
-  --ring: hsl(210, 95%, 55%);
-  --radius: 0.75rem;
-  --text-light: hsl(220, 10%, 50%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(263, 70%, 50%);
+  --radius: 0.5rem;
+  --text-light: hsl(240, 5%, 64.9%);
   
-  /* Couleurs personnalisées pour le design artistique */
-  --gradient-from: hsl(210, 95%, 55%);
-  --gradient-to: hsl(280, 70%, 70%);
-  --glass-bg: hsla(0, 0%, 100%, 0.8);
-  --glass-border: hsla(20, 20%, 88%, 0.8);
+  /* Couleurs contemporaines pour effets */
+  --gradient-from: hsl(263, 70%, 50%);
+  --gradient-to: hsl(142, 76%, 36%);
+  --glass-bg: hsla(240, 10%, 3.9%, 0.95);
+  --glass-border: hsla(240, 3.7%, 15.9%, 0.8);
+  --neon-glow: hsl(263, 70%, 50%);
 }
 
 
@@ -69,11 +70,27 @@
   
   .glass-card {
     background: var(--glass-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
-    box-shadow: 0 8px 32px hsla(210, 95%, 55%, 0.08), 
-                0 4px 16px hsla(0, 0%, 0%, 0.04);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 
+                0 0 0 1px rgba(255, 255, 255, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  
+  .modern-card {
+    background: linear-gradient(145deg, 
+      hsl(240, 3.7%, 15.9%) 0%, 
+      hsl(240, 5%, 8%) 100%);
+    border: 1px solid hsl(240, 3.7%, 15.9%);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3),
+                0 10px 10px -5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .neon-border {
+    border: 1px solid var(--neon-glow);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3),
+                inset 0 0 20px rgba(139, 92, 246, 0.1);
   }
   
   .hover-glow {
