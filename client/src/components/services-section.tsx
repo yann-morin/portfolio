@@ -62,16 +62,16 @@ export default function ServicesSection() {
               Mes offres de <span className="gradient-text">création</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Deux formules adaptées à vos besoins, de la simple vitrine au site complet 
-              avec plusieurs pages et fonctionnalités avancées
+              Trois formules adaptées à vos besoins, de la simple vitrine au projet sur mesure 
+              avec fonctionnalités personnalisées
             </p>
           </div>
           
           {/* Cartes de services */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
             {/* Pack BASIC */}
             <div className={`${isVisible ? 'animate-slide-in-left' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
-              <Card className="glass-card hover-glow group border-primary/20 rounded-3xl overflow-hidden relative">
+              <Card className="glass-card hover-glow group border-primary/20 rounded-3xl overflow-hidden relative h-full flex flex-col">
                 {/* Badge populaire */}
                 <div className="absolute top-4 right-4 z-10">
                   <Badge className="bg-primary/20 text-primary border-primary/30 px-3 py-1">
@@ -80,64 +80,60 @@ export default function ServicesSection() {
                   </Badge>
                 </div>
 
-                <CardContent className="p-8">
-                  <div className="flex items-center justify-between mb-6">
-                    <div>
-                      <h3 className="text-2xl font-bold text-foreground mb-2">Pack BASIC</h3>
-                      <p className="text-muted-foreground">Parfait pour démarrer</p>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-4xl font-bold gradient-text">990€</div>
-                      <div className="text-sm text-muted-foreground">TTC</div>
-                    </div>
+                <CardContent className="p-8 flex flex-col h-full">
+                  <div className="text-center mb-6">
+                    <h3 className="text-2xl font-bold text-foreground mb-2">Pack BASIC</h3>
+                    <p className="text-muted-foreground mb-4">Parfait pour démarrer</p>
+                    <div className="text-4xl font-bold gradient-text mb-1">990€</div>
+                    <div className="text-sm text-muted-foreground">TTC</div>
                   </div>
                   
-                  <div className="space-y-4 mb-8">
+                  <div className="space-y-3 mb-8 flex-grow">
                     <div className="flex items-start group/item">
-                      <div className="glass-card p-1 rounded-lg mr-3 mt-0.5">
+                      <div className="glass-card p-1 rounded-lg mr-3 mt-0.5 flex-shrink-0">
                         <Check className="text-primary h-4 w-4" />
                       </div>
-                      <span className="text-foreground group-hover/item:text-primary transition-colors">
+                      <span className="text-foreground group-hover/item:text-primary transition-colors text-sm">
                         Site vitrine 1 page responsive
                       </span>
                     </div>
                     <div className="flex items-start group/item">
-                      <div className="glass-card p-1 rounded-lg mr-3 mt-0.5">
+                      <div className="glass-card p-1 rounded-lg mr-3 mt-0.5 flex-shrink-0">
                         <Check className="text-primary h-4 w-4" />
                       </div>
-                      <span className="text-foreground group-hover/item:text-primary transition-colors">
+                      <span className="text-foreground group-hover/item:text-primary transition-colors text-sm">
                         Design moderne et professionnel
                       </span>
                     </div>
                     <div className="flex items-start group/item">
-                      <div className="glass-card p-1 rounded-lg mr-3 mt-0.5">
+                      <div className="glass-card p-1 rounded-lg mr-3 mt-0.5 flex-shrink-0">
                         <Check className="text-primary h-4 w-4" />
                       </div>
-                      <span className="text-foreground group-hover/item:text-primary transition-colors">
+                      <span className="text-foreground group-hover/item:text-primary transition-colors text-sm">
                         Optimisé mobile et tablette
                       </span>
                     </div>
                     <div className="flex items-start group/item">
-                      <div className="glass-card p-1 rounded-lg mr-3 mt-0.5">
+                      <div className="glass-card p-1 rounded-lg mr-3 mt-0.5 flex-shrink-0">
                         <Check className="text-primary h-4 w-4" />
                       </div>
-                      <span className="text-foreground group-hover/item:text-primary transition-colors">
+                      <span className="text-foreground group-hover/item:text-primary transition-colors text-sm">
                         Formulaire de contact
                       </span>
                     </div>
                     <div className="flex items-start group/item">
-                      <div className="glass-card p-1 rounded-lg mr-3 mt-0.5">
+                      <div className="glass-card p-1 rounded-lg mr-3 mt-0.5 flex-shrink-0">
                         <Check className="text-primary h-4 w-4" />
                       </div>
-                      <span className="text-foreground group-hover/item:text-primary transition-colors">
+                      <span className="text-foreground group-hover/item:text-primary transition-colors text-sm">
                         Optimisation SEO de base
                       </span>
                     </div>
                     <div className="flex items-start group/item">
-                      <div className="glass-card p-1 rounded-lg mr-3 mt-0.5">
+                      <div className="glass-card p-1 rounded-lg mr-3 mt-0.5 flex-shrink-0">
                         <Check className="text-primary h-4 w-4" />
                       </div>
-                      <span className="text-foreground group-hover/item:text-primary transition-colors">
+                      <span className="text-foreground group-hover/item:text-primary transition-colors text-sm">
                         Mise en ligne incluse
                       </span>
                     </div>
@@ -145,7 +141,7 @@ export default function ServicesSection() {
                   
                   <Button 
                     onClick={scrollToContact}
-                    className="w-full glass-card hover-glow bg-primary/20 hover:bg-primary/30 text-primary border-primary/50 font-semibold py-3 rounded-xl text-lg group/btn"
+                    className="w-full glass-card hover-glow bg-primary/20 hover:bg-primary/30 text-primary border-primary/50 font-semibold py-3 rounded-xl group/btn"
                   >
                     Choisir BASIC
                     <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
@@ -155,8 +151,8 @@ export default function ServicesSection() {
             </div>
 
             {/* Pack PRO */}
-            <div className={`${isVisible ? 'animate-slide-in-right' : 'opacity-0'}`} style={{ animationDelay: '0.4s' }}>
-              <Card className="glass-card hover-glow group border-accent/20 rounded-3xl overflow-hidden relative">
+            <div className={`${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.3s' }}>
+              <Card className="glass-card hover-glow group border-accent/20 rounded-3xl overflow-hidden relative h-full flex flex-col">
                 {/* Badge recommandé */}
                 <div className="absolute top-4 right-4 z-10">
                   <Badge className="bg-accent/20 text-accent border-accent/30 px-3 py-1">
@@ -165,72 +161,68 @@ export default function ServicesSection() {
                   </Badge>
                 </div>
 
-                <CardContent className="p-8">
-                  <div className="flex items-center justify-between mb-6">
-                    <div>
-                      <h3 className="text-2xl font-bold text-foreground mb-2">Pack PRO</h3>
-                      <p className="text-muted-foreground">Solution complète</p>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-4xl font-bold text-accent">1790€</div>
-                      <div className="text-sm text-muted-foreground">TTC</div>
-                    </div>
+                <CardContent className="p-8 flex flex-col h-full">
+                  <div className="text-center mb-6">
+                    <h3 className="text-2xl font-bold text-foreground mb-2">Pack PRO</h3>
+                    <p className="text-muted-foreground mb-4">Solution complète</p>
+                    <div className="text-4xl font-bold text-accent mb-1">1790€</div>
+                    <div className="text-sm text-muted-foreground">TTC</div>
                   </div>
                   
-                  <div className="space-y-4 mb-8">
+                  <div className="space-y-3 mb-8 flex-grow">
                     <div className="flex items-start group/item">
-                      <div className="glass-card p-1 rounded-lg mr-3 mt-0.5">
+                      <div className="glass-card p-1 rounded-lg mr-3 mt-0.5 flex-shrink-0">
                         <Check className="text-accent h-4 w-4" />
                       </div>
-                      <span className="text-foreground group-hover/item:text-accent transition-colors">
+                      <span className="text-foreground group-hover/item:text-accent transition-colors text-sm">
                         Site multi-pages (jusqu'à 5 pages)
                       </span>
                     </div>
                     <div className="flex items-start group/item">
-                      <div className="glass-card p-1 rounded-lg mr-3 mt-0.5">
+                      <div className="glass-card p-1 rounded-lg mr-3 mt-0.5 flex-shrink-0">
                         <Check className="text-accent h-4 w-4" />
                       </div>
-                      <span className="text-foreground group-hover/item:text-accent transition-colors">
+                      <span className="text-foreground group-hover/item:text-accent transition-colors text-sm">
                         Design sur mesure et animations
                       </span>
                     </div>
                     <div className="flex items-start group/item">
-                      <div className="glass-card p-1 rounded-lg mr-3 mt-0.5">
+                      <div className="glass-card p-1 rounded-lg mr-3 mt-0.5 flex-shrink-0">
                         <Check className="text-accent h-4 w-4" />
                       </div>
-                      <span className="text-foreground group-hover/item:text-accent transition-colors">
+                      <span className="text-foreground group-hover/item:text-accent transition-colors text-sm">
                         Galerie photos/portfolio
                       </span>
                     </div>
                     <div className="flex items-start group/item">
-                      <div className="glass-card p-1 rounded-lg mr-3 mt-0.5">
+                      <div className="glass-card p-1 rounded-lg mr-3 mt-0.5 flex-shrink-0">
                         <Check className="text-accent h-4 w-4" />
                       </div>
-                      <span className="text-foreground group-hover/item:text-accent transition-colors">
+                      <span className="text-foreground group-hover/item:text-accent transition-colors text-sm">
                         Blog/actualités
                       </span>
                     </div>
                     <div className="flex items-start group/item">
-                      <div className="glass-card p-1 rounded-lg mr-3 mt-0.5">
+                      <div className="glass-card p-1 rounded-lg mr-3 mt-0.5 flex-shrink-0">
                         <Check className="text-accent h-4 w-4" />
                       </div>
-                      <span className="text-foreground group-hover/item:text-accent transition-colors">
+                      <span className="text-foreground group-hover/item:text-accent transition-colors text-sm">
                         Optimisation SEO avancée
                       </span>
                     </div>
                     <div className="flex items-start group/item">
-                      <div className="glass-card p-1 rounded-lg mr-3 mt-0.5">
+                      <div className="glass-card p-1 rounded-lg mr-3 mt-0.5 flex-shrink-0">
                         <Check className="text-accent h-4 w-4" />
                       </div>
-                      <span className="text-foreground group-hover/item:text-accent transition-colors">
+                      <span className="text-foreground group-hover/item:text-accent transition-colors text-sm">
                         Intégration réseaux sociaux
                       </span>
                     </div>
                     <div className="flex items-start group/item">
-                      <div className="glass-card p-1 rounded-lg mr-3 mt-0.5">
+                      <div className="glass-card p-1 rounded-lg mr-3 mt-0.5 flex-shrink-0">
                         <Check className="text-accent h-4 w-4" />
                       </div>
-                      <span className="text-foreground group-hover/item:text-accent transition-colors">
+                      <span className="text-foreground group-hover/item:text-accent transition-colors text-sm">
                         Formation à la gestion
                       </span>
                     </div>
@@ -238,9 +230,98 @@ export default function ServicesSection() {
                   
                   <Button 
                     onClick={scrollToContact}
-                    className="w-full glass-card hover-glow bg-accent/20 hover:bg-accent/30 text-accent border-accent/50 font-semibold py-3 rounded-xl text-lg group/btn"
+                    className="w-full glass-card hover-glow bg-accent/20 hover:bg-accent/30 text-accent border-accent/50 font-semibold py-3 rounded-xl group/btn"
                   >
                     Choisir PRO
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Pack PERSONNALISÉ */}
+            <div className={`${isVisible ? 'animate-slide-in-right' : 'opacity-0'}`} style={{ animationDelay: '0.4s' }}>
+              <Card className="glass-card hover-glow group border-accent-secondary/20 rounded-3xl overflow-hidden relative h-full flex flex-col">
+                {/* Badge sur mesure */}
+                <div className="absolute top-4 right-4 z-10">
+                  <Badge className="bg-accent-secondary/20 text-accent-secondary border-accent-secondary/30 px-3 py-1">
+                    <Zap className="h-3 w-3 mr-1" />
+                    Sur mesure
+                  </Badge>
+                </div>
+
+                <CardContent className="p-8 flex flex-col h-full">
+                  <div className="text-center mb-6">
+                    <h3 className="text-2xl font-bold text-foreground mb-2">Devis Personnalisé</h3>
+                    <p className="text-muted-foreground mb-4">Projet unique</p>
+                    <div className="text-4xl font-bold text-accent-secondary mb-1">Sur devis</div>
+                    <div className="text-sm text-muted-foreground">Tarif adapté</div>
+                  </div>
+                  
+                  <div className="space-y-3 mb-8 flex-grow">
+                    <div className="flex items-start group/item">
+                      <div className="glass-card p-1 rounded-lg mr-3 mt-0.5 flex-shrink-0">
+                        <Check className="text-accent-secondary h-4 w-4" />
+                      </div>
+                      <span className="text-foreground group-hover/item:text-accent-secondary transition-colors text-sm">
+                        Projet entièrement sur mesure
+                      </span>
+                    </div>
+                    <div className="flex items-start group/item">
+                      <div className="glass-card p-1 rounded-lg mr-3 mt-0.5 flex-shrink-0">
+                        <Check className="text-accent-secondary h-4 w-4" />
+                      </div>
+                      <span className="text-foreground group-hover/item:text-accent-secondary transition-colors text-sm">
+                        Fonctionnalités spécifiques
+                      </span>
+                    </div>
+                    <div className="flex items-start group/item">
+                      <div className="glass-card p-1 rounded-lg mr-3 mt-0.5 flex-shrink-0">
+                        <Check className="text-accent-secondary h-4 w-4" />
+                      </div>
+                      <span className="text-foreground group-hover/item:text-accent-secondary transition-colors text-sm">
+                        E-commerce, réservations
+                      </span>
+                    </div>
+                    <div className="flex items-start group/item">
+                      <div className="glass-card p-1 rounded-lg mr-3 mt-0.5 flex-shrink-0">
+                        <Check className="text-accent-secondary h-4 w-4" />
+                      </div>
+                      <span className="text-foreground group-hover/item:text-accent-secondary transition-colors text-sm">
+                        Applications web complexes
+                      </span>
+                    </div>
+                    <div className="flex items-start group/item">
+                      <div className="glass-card p-1 rounded-lg mr-3 mt-0.5 flex-shrink-0">
+                        <Check className="text-accent-secondary h-4 w-4" />
+                      </div>
+                      <span className="text-foreground group-hover/item:text-accent-secondary transition-colors text-sm">
+                        Intégrations API tierces
+                      </span>
+                    </div>
+                    <div className="flex items-start group/item">
+                      <div className="glass-card p-1 rounded-lg mr-3 mt-0.5 flex-shrink-0">
+                        <Check className="text-accent-secondary h-4 w-4" />
+                      </div>
+                      <span className="text-foreground group-hover/item:text-accent-secondary transition-colors text-sm">
+                        Support technique dédié
+                      </span>
+                    </div>
+                    <div className="flex items-start group/item">
+                      <div className="glass-card p-1 rounded-lg mr-3 mt-0.5 flex-shrink-0">
+                        <Check className="text-accent-secondary h-4 w-4" />
+                      </div>
+                      <span className="text-foreground group-hover/item:text-accent-secondary transition-colors text-sm">
+                        Délais adaptés au projet
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <Button 
+                    onClick={scrollToContact}
+                    className="w-full glass-card hover-glow bg-accent-secondary/20 hover:bg-accent-secondary/30 text-accent-secondary border-accent-secondary/50 font-semibold py-3 rounded-xl group/btn"
+                  >
+                    Demander un devis
                     <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
                   </Button>
                 </CardContent>
