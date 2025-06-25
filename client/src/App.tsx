@@ -5,7 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/home";
 import NotFound from "@/pages/not-found";
-import SimpleBubbles from "@/components/simple-bubbles";
+import BackgroundBubbles from "@/components/background-bubbles";
 
 function Router() {
   return (
@@ -20,7 +20,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <SimpleBubbles />
+        <BackgroundBubbles />
         <Toaster />
         <Router />
       </TooltipProvider>

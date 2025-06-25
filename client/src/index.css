@@ -253,6 +253,51 @@
   }
 }
 
+@keyframes float-up {
+  0% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-50vh) translateX(10px);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-120vh) translateX(0px);
+    opacity: 0;
+  }
+}
+
+.animate-float-up-1 {
+  animation: float-up 20s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+.animate-float-up-2 {
+  animation: float-up 18s ease-in-out infinite;
+  animation-delay: 3s;
+}
+
+.animate-float-up-3 {
+  animation: float-up 22s ease-in-out infinite;
+  animation-delay: 6s;
+}
+
+.animate-float-up-4 {
+  animation: float-up 16s ease-in-out infinite;
+  animation-delay: 9s;
+}
+
+.animate-float-up-5 {
+  animation: float-up 19s ease-in-out infinite;
+  animation-delay: 12s;
+}
+
+.animate-float-up-6 {
+  animation: float-up 21s ease-in-out infinite;
+  animation-delay: 15s;
+}
+
 /* Responsive et accessibility */
 @media (prefers-reduced-motion: reduce) {
   .animate-float,
