@@ -1,0 +1,202 @@
+import { useEffect, useRef } from 'react';
+
+interface Bubble {
+  x: number;
+  y: number;
+  size: number;
+  speed: number;
+  opacity: number;
+  color: string;
+}
+
+interface FloatingShape {
+  x: number;
+  y: number;
+  size: number;
+  speed: number;
+  rotation: number;
+  rotationSpeed: number;
+  opacity: number;
+  type: 'circle' | 'triangle' | 'square';
+}
+
+export default function AnimatedBackground() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const bubblesRef = useRef<Bubble[]>([]);
+  const shapesRef = useRef<FloatingShape[]>([]);
+  const animationRef = useRef<number>();
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+
+    const createBubbles = () => {
+      const bubbles: Bubble[] = [];
+      const colors = [
+        'rgba(139, 92, 246, 0.3)', // purple
+        'rgba(59, 130, 246, 0.3)',  // blue
+        'rgba(16, 185, 129, 0.3)',  // emerald
+        'rgba(245, 158, 11, 0.3)',  // amber
+        'rgba(236, 72, 153, 0.3)',  // pink
+      ];
+
+      for (let i = 0; i < 15; i++) {
+        bubbles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 60 + 20,
+          speed: Math.random() * 2 + 0.5,
+          opacity: Math.random() * 0.5 + 0.1,
+          color: colors[Math.floor(Math.random() * colors.length)]
+        });
+      }
+      bubblesRef.current = bubbles;
+    };
+
+    const createFloatingShapes = () => {
+      const shapes: FloatingShape[] = [];
+      const types: ('circle' | 'triangle' | 'square')[] = ['circle', 'triangle', 'square'];
+
+      for (let i = 0; i < 8; i++) {
+        shapes.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 40 + 15,
+          speed: Math.random() * 1.5 + 0.3,
+          rotation: Math.random() * Math.PI * 2,
+          rotationSpeed: (Math.random() - 0.5) * 0.02,
+          opacity: Math.random() * 0.3 + 0.1,
+          type: types[Math.floor(Math.random() * types.length)]
+        });
+      }
+      shapesRef.current = shapes;
+    };
+
+    const drawBubble = (bubble: Bubble) => {
+      const gradient = ctx.createRadialGradient(
+        bubble.x, bubble.y, 0,
+        bubble.x, bubble.y, bubble.size
+      );
+      gradient.addColorStop(0, bubble.color);
+      gradient.addColorStop(1, 'transparent');
+
+      ctx.globalAlpha = bubble.opacity;
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.arc(bubble.x, bubble.y, bubble.size, 0, Math.PI * 2);
+      ctx.fill();
+    };
+
+    const drawShape = (shape: FloatingShape) => {
+      ctx.save();
+      ctx.globalAlpha = shape.opacity;
+      ctx.translate(shape.x, shape.y);
+      ctx.rotate(shape.rotation);
+      
+      const gradient = ctx.createLinearGradient(-shape.size, -shape.size, shape.size, shape.size);
+      gradient.addColorStop(0, 'rgba(255, 255, 255, 0.2)');
+      gradient.addColorStop(1, 'rgba(255, 255, 255, 0.05)');
+      
+      ctx.fillStyle = gradient;
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+      ctx.lineWidth = 1;
+
+      switch (shape.type) {
+        case 'circle':
+          ctx.beginPath();
+          ctx.arc(0, 0, shape.size, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.stroke();
+          break;
+        case 'triangle':
+          ctx.beginPath();
+          ctx.moveTo(0, -shape.size);
+          ctx.lineTo(-shape.size * 0.866, shape.size * 0.5);
+          ctx.lineTo(shape.size * 0.866, shape.size * 0.5);
+          ctx.closePath();
+          ctx.fill();
+          ctx.stroke();
+          break;
+        case 'square':
+          ctx.beginPath();
+          ctx.rect(-shape.size / 2, -shape.size / 2, shape.size, shape.size);
+          ctx.fill();
+          ctx.stroke();
+          break;
+      }
+      ctx.restore();
+    };
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Animate bubbles
+      bubblesRef.current.forEach(bubble => {
+        bubble.y -= bubble.speed;
+        bubble.opacity = Math.sin(Date.now() * 0.001 + bubble.x * 0.01) * 0.3 + 0.2;
+        
+        if (bubble.y + bubble.size < 0) {
+          bubble.y = canvas.height + bubble.size;
+          bubble.x = Math.random() * canvas.width;
+        }
+        
+        drawBubble(bubble);
+      });
+
+      // Animate floating shapes
+      shapesRef.current.forEach(shape => {
+        shape.y -= shape.speed;
+        shape.rotation += shape.rotationSpeed;
+        shape.x += Math.sin(Date.now() * 0.001 + shape.y * 0.01) * 0.5;
+        
+        if (shape.y + shape.size < 0) {
+          shape.y = canvas.height + shape.size;
+          shape.x = Math.random() * canvas.width;
+        }
+        
+        if (shape.x < -shape.size) shape.x = canvas.width + shape.size;
+        if (shape.x > canvas.width + shape.size) shape.x = -shape.size;
+        
+        drawShape(shape);
+      });
+
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    resizeCanvas();
+    createBubbles();
+    createFloatingShapes();
+    animate();
+
+    const handleResize = () => {
+      resizeCanvas();
+      createBubbles();
+      createFloatingShapes();
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="fixed inset-0 pointer-events-none z-0"
+      style={{ background: 'transparent' }}
+    />
+  );
+}
