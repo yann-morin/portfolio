@@ -198,7 +198,7 @@ export default function PortfolioSection() {
           <div className={`${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.8s' }}>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
               <div className="glass-card p-6 rounded-2xl hover-glow">
-                <div className="text-3xl font-bold gradient-text mb-2">50+</div>
+                <div className="text-3xl font-bold gradient-text mb-2">25+</div>
                 <p className="text-sm text-muted-foreground">Projets réalisés</p>
               </div>
               <div className="glass-card p-6 rounded-2xl hover-glow">

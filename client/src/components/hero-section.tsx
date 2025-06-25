@@ -48,22 +48,6 @@ export default function HeroSection() {
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-5xl mx-auto">
-          {/* Badges animés */}
-          <div className={`mb-8 flex justify-center space-x-4 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
-            <div className="glass-card p-4 rounded-2xl hover-glow group cursor-pointer">
-              <Code className="h-8 w-8 text-primary group-hover:scale-110 transition-transform" />
-              <p className="text-xs mt-2 text-muted-foreground">Développement</p>
-            </div>
-            <div className="glass-card p-4 rounded-2xl hover-glow group cursor-pointer">
-              <Palette className="h-8 w-8 text-accent group-hover:scale-110 transition-transform" />
-              <p className="text-xs mt-2 text-muted-foreground">Design</p>
-            </div>
-            <div className="glass-card p-4 rounded-2xl hover-glow group cursor-pointer">
-              <Zap className="h-8 w-8 text-accent-secondary group-hover:scale-110 transition-transform" />
-              <p className="text-xs mt-2 text-muted-foreground">Performance</p>
-            </div>
-          </div>
-          
           {/* Titre principal avec effet gradient */}
           <div className={`${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.4s' }}>
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight" itemProp="name">
@@ -93,11 +77,11 @@ export default function HeroSection() {
               <p className="text-sm text-muted-foreground">Note client</p>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-primary mb-1">50+</div>
+              <div className="text-2xl font-bold text-primary mb-1">25+</div>
               <p className="text-sm text-muted-foreground">Projets réalisés</p>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-accent mb-1">2 ans</div>
+              <div className="text-2xl font-bold text-accent mb-1">6 ans</div>
               <p className="text-sm text-muted-foreground">d'expérience</p>
             </div>
           </div>

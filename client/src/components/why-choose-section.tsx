@@ -163,11 +163,11 @@ export default function WhyChooseSection() {
                 {/* Statistiques de confiance */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   <div className="text-center">
-                    <div className="text-3xl font-bold gradient-text mb-2">2 ans</div>
-                    <p className="text-muted-foreground">d'expérience freelance</p>
+                    <div className="text-3xl font-bold gradient-text mb-2">6 ans</div>
+                    <p className="text-muted-foreground">d'expérience</p>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-primary mb-2">50+</div>
+                    <div className="text-3xl font-bold text-primary mb-2">25+</div>
                     <p className="text-muted-foreground">projets réalisés</p>
                   </div>
                   <div className="text-center">
