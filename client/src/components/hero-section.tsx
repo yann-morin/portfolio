@@ -53,7 +53,7 @@ export default function HeroSection() {
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight" itemProp="name">
               <span className="gradient-text">Yann Morin</span>
               <span className="block text-3xl md:text-5xl lg:text-6xl text-foreground/90 mt-4 font-light">
-                Développeur Web <span className="text-primary font-bold">Freelance</span> à <span className="text-accent font-bold">Montpellier</span>
+                Développeur Web <span className="text-primary font-bold">Freelance</span>
               </span>
             </h1>
           </div>
@@ -62,8 +62,7 @@ export default function HeroSection() {
           <div className={`${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.6s' }}>
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed font-light" itemProp="description">
               Création de sites web <span className="text-primary font-semibold">modernes</span> et 
-              <span className="text-accent font-semibold"> performants</span> pour les commerçants, artisans et professionnels de Montpellier et l'Hérault. 
-              Des solutions sur mesure qui donnent vie à vos idées digitales avec un référencement optimisé.
+              <span className="text-accent font-semibold"> performants</span>.
             </p>
           </div>
 
