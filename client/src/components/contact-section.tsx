@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -14,11 +14,30 @@ import { useMutation } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { insertContactRequestSchema, type InsertContactRequest } from "@shared/schema";
-import { Mail, Phone, MapPin, Send, Gift, Clock } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Gift, Clock, MessageSquare, ArrowRight } from "lucide-react";
 
 export default function ContactSection() {
+  const [isVisible, setIsVisible] = useState(false);
   const { toast } = useToast();
   
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const element = document.getElementById('contact');
+    if (element) {
+      observer.observe(element);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   const form = useForm<InsertContactRequest>({
     resolver: zodResolver(insertContactRequestSchema),
     defaultValues: {
@@ -58,237 +77,296 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-primary">
-      <div className="container mx-auto px-4">
+    <section id="contact" className="py-20 bg-background relative overflow-hidden">
+      {/* Particules de fond */}
+      <div className="absolute inset-0 overflow-hidden">
+        {[...Array(8)].map((_, i) => (
+          <div
+            key={i}
+            className="particle absolute animate-float"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 6}s`,
+              animationDuration: `${6 + Math.random() * 2}s`
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6">Parlons de votre projet</h2>
-            <p className="text-xl text-light max-w-2xl mx-auto">
-              Discutons ensemble de vos besoins. Devis gratuit sous 24h.
+          {/* En-tête de section */}
+          <div className={`text-center mb-16 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+            <Badge className="mb-4 glass-card px-6 py-2 text-primary border-primary/30">
+              <MessageSquare className="h-4 w-4 mr-2" />
+              Contact
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
+              Démarrons votre <span className="gradient-text">projet</span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Parlez-moi de votre projet et recevez un devis personnalisé sous 24h. 
+              Première consultation gratuite et sans engagement.
             </p>
           </div>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Formulaire de contact */}
-            <Card className="bg-secondary">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold mb-6">Demande de devis gratuit</h3>
-                
-                <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <FormField
-                        control={form.control}
-                        name="firstName"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Prénom *</FormLabel>
-                            <FormControl>
-                              <Input
-                                {...field}
-                                className="bg-primary border-gray-600 text-white focus:border-accent"
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={form.control}
-                        name="lastName"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Nom *</FormLabel>
-                            <FormControl>
-                              <Input
-                                {...field}
-                                className="bg-primary border-gray-600 text-white focus:border-accent"
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-                    
-                    <FormField
-                      control={form.control}
-                      name="email"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Email *</FormLabel>
-                          <FormControl>
-                            <Input
-                              {...field}
-                              type="email"
-                              className="bg-primary border-gray-600 text-white focus:border-accent"
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    
-                    <FormField
-                      control={form.control}
-                      name="phone"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Téléphone</FormLabel>
-                          <FormControl>
-                            <Input
-                              {...field}
-                              type="tel"
-                              className="bg-primary border-gray-600 text-white focus:border-accent"
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    
-                    <FormField
-                      control={form.control}
-                      name="businessType"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Type d'activité *</FormLabel>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                              <SelectTrigger className="bg-primary border-gray-600 text-white focus:border-accent">
-                                <SelectValue placeholder="Sélectionnez votre secteur" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                              <SelectItem value="commerce">Commerce / Boutique</SelectItem>
-                              <SelectItem value="restauration">Restauration</SelectItem>
-                              <SelectItem value="artisanat">Artisanat</SelectItem>
-                              <SelectItem value="service">Service à la personne</SelectItem>
-                              <SelectItem value="liberal">Profession libérale</SelectItem>
-                              <SelectItem value="autre">Autre</SelectItem>
-                            </SelectContent>
-                          </Select>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    
-                    <FormField
-                      control={form.control}
-                      name="selectedPack"
-                      render={({ field }) => (
-                        <FormItem className="space-y-3">
-                          <FormLabel>Pack souhaité</FormLabel>
-                          <FormControl>
-                            <RadioGroup
-                              onValueChange={field.onChange}
-                              defaultValue={field.value}
-                              className="grid grid-cols-1 md:grid-cols-2 gap-4"
-                            >
-                              <div className="flex items-center space-x-3">
-                                <RadioGroupItem value="basic" id="basic" />
-                                <Label htmlFor="basic">Pack BASIC (990€)</Label>
-                              </div>
-                              <div className="flex items-center space-x-3">
-                                <RadioGroupItem value="pro" id="pro" />
-                                <Label htmlFor="pro">Pack PRO (1990€)</Label>
-                              </div>
-                            </RadioGroup>
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    
-                    <FormField
-                      control={form.control}
-                      name="projectDescription"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Décrivez votre projet</FormLabel>
-                          <FormControl>
-                            <Textarea
-                              {...field}
-                              rows={4}
-                              placeholder="Décrivez brièvement votre activité et vos besoins..."
-                              className="bg-primary border-gray-600 text-white focus:border-accent"
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    
-                    <Button
-                      type="submit"
-                      disabled={contactMutation.isPending}
-                      className="w-full bg-accent hover:bg-accent/90 text-white py-4 px-6 font-semibold text-lg shadow-lg hover:shadow-xl"
-                    >
-                      <Send className="mr-2 h-5 w-5" />
-                      {contactMutation.isPending ? "Envoi en cours..." : "Envoyer ma demande"}
-                    </Button>
-                  </form>
-                </Form>
-              </CardContent>
-            </Card>
-            
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* Informations de contact */}
-            <div className="space-y-8">
-              <Card className="bg-secondary">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold mb-6">Restons en contact</h3>
-                  
-                  <div className="space-y-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center flex-shrink-0">
-                        <Mail className="text-accent h-5 w-5" />
+            <div className={`lg:col-span-4 ${isVisible ? 'animate-slide-in-left' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
+              <div className="space-y-8">
+                {/* Carte principale */}
+                <Card className="glass-card hover-glow border-border/20 rounded-3xl">
+                  <CardContent className="p-8">
+                    <h3 className="text-2xl font-bold text-foreground mb-6">
+                      Parlons de votre projet
+                    </h3>
+                    
+                    <div className="space-y-6">
+                      <div className="flex items-start space-x-4">
+                        <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                          <Mail className="h-6 w-6 text-primary" />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-foreground mb-1">Email</h4>
+                          <p className="text-muted-foreground">yann.morin@freelance.fr</p>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="font-semibold mb-1">Email professionnel</h4>
-                        <p className="text-light">yann.morin@freelance.com</p>
-                        <p className="text-sm text-light">Réponse sous 24h</p>
+
+                      <div className="flex items-start space-x-4">
+                        <div className="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                          <Phone className="h-6 w-6 text-accent" />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-foreground mb-1">Téléphone</h4>
+                          <p className="text-muted-foreground">04 XX XX XX XX</p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start space-x-4">
+                        <div className="w-12 h-12 bg-accent-secondary/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                          <MapPin className="h-6 w-6 text-accent-secondary" />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-foreground mb-1">Localisation</h4>
+                          <p className="text-muted-foreground">Montpellier, Hérault</p>
+                        </div>
                       </div>
                     </div>
-                    
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center flex-shrink-0">
-                        <Phone className="text-accent h-5 w-5" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold mb-1">Téléphone</h4>
-                        <p className="text-light">04 XX XX XX XX</p>
-                        <p className="text-sm text-light">Du lundi au vendredi, 18h-20h</p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center flex-shrink-0">
-                        <MapPin className="text-accent h-5 w-5" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold mb-1">Localisation</h4>
-                        <p className="text-light">Montpellier et environs</p>
-                        <p className="text-sm text-light">Déplacements possibles</p>
-                      </div>
+                  </CardContent>
+                </Card>
+
+                {/* Avantages */}
+                <div className="space-y-4">
+                  <div className="glass-card p-4 rounded-2xl hover-glow">
+                    <div className="flex items-center space-x-3">
+                      <Gift className="h-5 w-5 text-primary" />
+                      <span className="text-foreground font-medium">Devis gratuit sous 24h</span>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
-              
-              <Card className="bg-accent/10 border border-accent/20">
+                  <div className="glass-card p-4 rounded-2xl hover-glow">
+                    <div className="flex items-center space-x-3">
+                      <Clock className="h-5 w-5 text-accent" />
+                      <span className="text-foreground font-medium">Livraison en 2 semaines</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Formulaire de contact */}
+            <div className={`lg:col-span-8 ${isVisible ? 'animate-slide-in-right' : 'opacity-0'}`} style={{ animationDelay: '0.4s' }}>
+              <Card className="glass-card border-border/20 rounded-3xl">
                 <CardContent className="p-8">
-                  <h3 className="text-xl font-bold mb-4">
-                    <Gift className="text-accent mr-2 inline h-5 w-5" />
-                    Offre de lancement
-                  </h3>
-                  <p className="text-light mb-4">
-                    Pour mes 10 premiers clients, bénéficiez d'une réduction de 10% 
-                    sur le Pack PRO et d'un an d'hébergement offert.
-                  </p>
-                  <p className="text-sm text-light">
-                    <Clock className="mr-1 inline h-4 w-4" />
-                    Offre valable jusqu'au 31 mars 2024
-                  </p>
+                  <Form {...form}>
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                      {/* Informations personnelles */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <FormField
+                          control={form.control}
+                          name="firstName"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="text-foreground font-medium">Prénom *</FormLabel>
+                              <FormControl>
+                                <Input 
+                                  {...field} 
+                                  className="glass-card border-border/30 bg-background/50 focus:border-primary/50 rounded-xl"
+                                  placeholder="Votre prénom"
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+
+                        <FormField
+                          control={form.control}
+                          name="lastName"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="text-foreground font-medium">Nom *</FormLabel>
+                              <FormControl>
+                                <Input 
+                                  {...field} 
+                                  className="glass-card border-border/30 bg-background/50 focus:border-primary/50 rounded-xl"
+                                  placeholder="Votre nom"
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <FormField
+                          control={form.control}
+                          name="email"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="text-foreground font-medium">Email *</FormLabel>
+                              <FormControl>
+                                <Input 
+                                  {...field} 
+                                  type="email"
+                                  className="glass-card border-border/30 bg-background/50 focus:border-primary/50 rounded-xl"
+                                  placeholder="votre@email.fr"
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+
+                        <FormField
+                          control={form.control}
+                          name="phone"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="text-foreground font-medium">Téléphone</FormLabel>
+                              <FormControl>
+                                <Input 
+                                  {...field} 
+                                  type="tel"
+                                  value={field.value || ""}
+                                  className="glass-card border-border/30 bg-background/50 focus:border-primary/50 rounded-xl"
+                                  placeholder="06 XX XX XX XX"
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+
+                      {/* Type d'entreprise */}
+                      <FormField
+                        control={form.control}
+                        name="businessType"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-foreground font-medium">Type d'activité *</FormLabel>
+                            <Select onValueChange={field.onChange} defaultValue={field.value || ""}>
+                              <FormControl>
+                                <SelectTrigger className="glass-card border-border/30 bg-background/50 focus:border-primary/50 rounded-xl">
+                                  <SelectValue placeholder="Sélectionnez votre secteur d'activité" />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent className="glass-card border-border/30">
+                                <SelectItem value="restaurant">Restaurant / Bar</SelectItem>
+                                <SelectItem value="commerce">Commerce / Boutique</SelectItem>
+                                <SelectItem value="artisan">Artisan / Métiers manuels</SelectItem>
+                                <SelectItem value="service">Service / Conseil</SelectItem>
+                                <SelectItem value="sante">Santé / Bien-être</SelectItem>
+                                <SelectItem value="immobilier">Immobilier</SelectItem>
+                                <SelectItem value="autre">Autre</SelectItem>
+                              </SelectContent>
+                            </Select>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      {/* Pack sélectionné */}
+                      <FormField
+                        control={form.control}
+                        name="selectedPack"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-foreground font-medium">Pack souhaité *</FormLabel>
+                            <FormControl>
+                              <RadioGroup
+                                onValueChange={field.onChange}
+                                value={field.value || ""}
+                                className="grid grid-cols-1 md:grid-cols-2 gap-4"
+                              >
+                                <div className="glass-card p-4 rounded-xl hover-glow">
+                                  <div className="flex items-center space-x-3">
+                                    <RadioGroupItem value="basic" id="basic" className="border-primary text-primary" />
+                                    <Label htmlFor="basic" className="flex-1 cursor-pointer">
+                                      <div className="font-semibold text-foreground">Pack BASIC</div>
+                                      <div className="text-sm text-muted-foreground">Site vitrine 1 page - 990€</div>
+                                    </Label>
+                                  </div>
+                                </div>
+                                <div className="glass-card p-4 rounded-xl hover-glow">
+                                  <div className="flex items-center space-x-3">
+                                    <RadioGroupItem value="pro" id="pro" className="border-accent text-accent" />
+                                    <Label htmlFor="pro" className="flex-1 cursor-pointer">
+                                      <div className="font-semibold text-foreground">Pack PRO</div>
+                                      <div className="text-sm text-muted-foreground">Site multi-pages - 1790€</div>
+                                    </Label>
+                                  </div>
+                                </div>
+                              </RadioGroup>
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      {/* Description du projet */}
+                      <FormField
+                        control={form.control}
+                        name="projectDescription"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-foreground font-medium">Description du projet *</FormLabel>
+                            <FormControl>
+                              <Textarea 
+                                {...field}
+                                value={field.value || ""}
+                                className="glass-card border-border/30 bg-background/50 focus:border-primary/50 rounded-xl min-h-[120px]"
+                                placeholder="Décrivez votre projet, vos besoins spécifiques, les fonctionnalités souhaitées..."
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      {/* Bouton de soumission */}
+                      <Button
+                        type="submit"
+                        disabled={contactMutation.isPending}
+                        className="w-full glass-card hover-glow bg-primary/20 hover:bg-primary/30 text-primary border-primary/50 font-semibold py-4 rounded-xl text-lg group"
+                      >
+                        {contactMutation.isPending ? (
+                          <>Envoi en cours...</>
+                        ) : (
+                          <>
+                            Envoyer ma demande
+                            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                          </>
+                        )}
+                      </Button>
+
+                      <p className="text-sm text-muted-foreground text-center">
+                        * Champs obligatoires - Réponse garantie sous 24h
+                      </p>
+                    </form>
+                  </Form>
                 </CardContent>
               </Card>
             </div>
