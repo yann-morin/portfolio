@@ -41,20 +41,20 @@ export default function AnimatedBackground() {
     const createBubbles = () => {
       const bubbles: Bubble[] = [];
       const colors = [
-        'rgba(139, 92, 246, 0.15)', // purple
-        'rgba(59, 130, 246, 0.15)',  // blue
-        'rgba(16, 185, 129, 0.15)',  // emerald
-        'rgba(245, 158, 11, 0.15)',  // amber
-        'rgba(236, 72, 153, 0.15)',  // pink
+        'rgba(139, 92, 246, 0.4)', // purple
+        'rgba(59, 130, 246, 0.4)',  // blue
+        'rgba(16, 185, 129, 0.4)',  // emerald
+        'rgba(245, 158, 11, 0.4)',  // amber
+        'rgba(236, 72, 153, 0.4)',  // pink
       ];
 
-      for (let i = 0; i < 8; i++) {
+      for (let i = 0; i < 6; i++) {
         bubbles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          size: Math.random() * 80 + 40,
-          speed: Math.random() * 0.5 + 0.3, // Plus lent
-          opacity: Math.random() * 0.3 + 0.1,
+          size: Math.random() * 60 + 30,
+          speed: Math.random() * 0.8 + 0.4,
+          opacity: Math.random() * 0.4 + 0.3,
           color: colors[Math.floor(Math.random() * colors.length)]
         });
       }
@@ -127,10 +127,10 @@ export default function AnimatedBackground() {
       // Animate bubbles avec mouvement plus smooth
       bubblesRef.current.forEach(bubble => {
         bubble.y -= bubble.speed;
-        bubble.opacity = Math.sin(Date.now() * 0.0005 + bubble.x * 0.005) * 0.15 + 0.15;
+        bubble.opacity = Math.sin(Date.now() * 0.001 + bubble.x * 0.01) * 0.2 + 0.4;
         
         // Mouvement horizontal très subtil
-        bubble.x += Math.sin(Date.now() * 0.0003 + bubble.y * 0.002) * 0.2;
+        bubble.x += Math.sin(Date.now() * 0.0008 + bubble.y * 0.005) * 0.3;
         
         if (bubble.y + bubble.size < 0) {
           bubble.y = canvas.height + bubble.size;

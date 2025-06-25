@@ -121,6 +121,7 @@ Changelog:
 - June 25, 2025. Complete SEO optimization with metadata, structured data, and technical improvements
 - June 25, 2025. Successfully migrated to Replit environment with enhanced dynamic background animations
 - June 25, 2025. Added multi-layered animation system: floating bubbles, particle effects, and geometric orbs
+- June 25, 2025. Simplified to smooth floating bubbles only (6 bubbles, slow movement, visible opacity)
 ```
 
 ## User Preferences
