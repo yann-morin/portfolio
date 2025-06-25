@@ -33,7 +33,7 @@ export default function ServicesSection() {
   };
 
   return (
-    <section id="services" className="py-20 bg-gradient-modern relative overflow-hidden">
+    <section id="services" className="py-20 bg-gradient-modern relative overflow-hidden" itemScope itemType="https://schema.org/Service">
       {/* Particules de fond */}
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(10)].map((_, i) => (
@@ -58,12 +58,12 @@ export default function ServicesSection() {
               <Zap className="h-4 w-4 mr-2" />
               Mes Services
             </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
-              Mes offres de <span className="gradient-text">création</span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground" itemProp="name">
+              Mes offres de <span className="gradient-text">création de sites web</span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Trois formules adaptées à vos besoins, de la simple vitrine au projet sur mesure 
-              avec fonctionnalités personnalisées
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed" itemProp="description">
+              Trois formules de création de sites internet adaptées aux commerçants, artisans et professionnels de Montpellier. 
+              De la simple vitrine web au projet e-commerce sur mesure avec fonctionnalités personnalisées et référencement SEO optimisé.
             </p>
           </div>
           

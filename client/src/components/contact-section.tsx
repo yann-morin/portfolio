@@ -77,7 +77,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-background relative overflow-hidden">
+    <section id="contact" className="py-20 bg-background relative overflow-hidden" itemScope itemType="https://schema.org/ContactPage">
       {/* Particules de fond */}
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(8)].map((_, i) => (
@@ -102,12 +102,12 @@ export default function ContactSection() {
               <MessageSquare className="h-4 w-4 mr-2" />
               Contact
             </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
-              Démarrons votre <span className="gradient-text">projet</span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground" itemProp="name">
+              Démarrons votre <span className="gradient-text">projet web</span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Parlez-moi de votre projet et recevez un devis personnalisé sous 24h. 
-              Première consultation gratuite et sans engagement.
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed" itemProp="description">
+              Contact direct avec votre développeur web freelance à Montpellier. Devis gratuit et personnalisé sous 24h 
+              pour votre site internet. Première consultation sans engagement.
             </p>
           </div>
 

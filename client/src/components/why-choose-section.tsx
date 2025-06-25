@@ -70,7 +70,7 @@ export default function WhyChooseSection() {
   ];
 
   return (
-    <section id="pourquoi" className="py-20 bg-gradient-modern relative overflow-hidden">
+    <section id="pourquoi" className="py-20 bg-gradient-modern relative overflow-hidden" itemScope itemType="https://schema.org/AboutPage">
       {/* Particules de fond */}
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(12)].map((_, i) => (
@@ -95,12 +95,12 @@ export default function WhyChooseSection() {
               <Heart className="h-4 w-4 mr-2" />
               Mes Valeurs
             </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground" itemProp="name">
               Pourquoi me faire <span className="gradient-text">confiance</span> ?
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Un développeur local, transparent et à l'écoute de vos besoins. 
-              Voici ce qui me différencie dans l'accompagnement de vos projets web.
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed" itemProp="description">
+              Développeur web freelance basé à Montpellier, je vous accompagne avec transparence et professionnalisme. 
+              Expertise technique, proximité locale et relation de confiance pour vos projets de création de sites internet.
             </p>
           </div>
           

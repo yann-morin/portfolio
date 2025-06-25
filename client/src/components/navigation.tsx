@@ -28,7 +28,7 @@ export default function Navigation() {
       isScrolled 
         ? 'glass-card border-border/20 shadow-lg' 
         : 'bg-transparent'
-    }`}>
+    }`} role="navigation" aria-label="Navigation principale">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
         <div className="flex justify-between items-center">
           {/* Logo */}
@@ -37,8 +37,8 @@ export default function Navigation() {
               <Code className="h-6 w-6 text-primary group-hover:scale-110 transition-transform" />
             </div>
             <div className="hidden sm:block">
-              <h1 className="text-xl font-bold gradient-text">Yann Morin</h1>
-              <p className="text-sm text-muted-foreground">Développeur Web Freelance</p>
+              <h1 className="text-xl font-bold gradient-text" itemProp="name">Yann Morin</h1>
+              <p className="text-sm text-muted-foreground" itemProp="jobTitle">Développeur Web Freelance Montpellier</p>
             </div>
           </div>
           
