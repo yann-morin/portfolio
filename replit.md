@@ -108,6 +108,7 @@ Changelog:
 - June 25, 2025. Complete design overhaul with modern dark theme and glass morphism
 - June 25, 2025. Added comprehensive animations and interactive particle effects
 - June 25, 2025. Redesigned all sections with professional artistic touch
+- June 25, 2025. Changed color scheme from dark/green/blue to warm professional palette
 ```
 
 ## User Preferences
