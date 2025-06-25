@@ -41,20 +41,20 @@ export default function AnimatedBackground() {
     const createBubbles = () => {
       const bubbles: Bubble[] = [];
       const colors = [
-        'rgba(139, 92, 246, 0.3)', // purple
-        'rgba(59, 130, 246, 0.3)',  // blue
-        'rgba(16, 185, 129, 0.3)',  // emerald
-        'rgba(245, 158, 11, 0.3)',  // amber
-        'rgba(236, 72, 153, 0.3)',  // pink
+        'rgba(139, 92, 246, 0.15)', // purple
+        'rgba(59, 130, 246, 0.15)',  // blue
+        'rgba(16, 185, 129, 0.15)',  // emerald
+        'rgba(245, 158, 11, 0.15)',  // amber
+        'rgba(236, 72, 153, 0.15)',  // pink
       ];
 
-      for (let i = 0; i < 15; i++) {
+      for (let i = 0; i < 8; i++) {
         bubbles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          size: Math.random() * 60 + 20,
-          speed: Math.random() * 2 + 0.5,
-          opacity: Math.random() * 0.5 + 0.1,
+          size: Math.random() * 80 + 40,
+          speed: Math.random() * 0.5 + 0.3, // Plus lent
+          opacity: Math.random() * 0.3 + 0.1,
           color: colors[Math.floor(Math.random() * colors.length)]
         });
       }
@@ -62,22 +62,8 @@ export default function AnimatedBackground() {
     };
 
     const createFloatingShapes = () => {
-      const shapes: FloatingShape[] = [];
-      const types: ('circle' | 'triangle' | 'square')[] = ['circle', 'triangle', 'square'];
-
-      for (let i = 0; i < 8; i++) {
-        shapes.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          size: Math.random() * 40 + 15,
-          speed: Math.random() * 1.5 + 0.3,
-          rotation: Math.random() * Math.PI * 2,
-          rotationSpeed: (Math.random() - 0.5) * 0.02,
-          opacity: Math.random() * 0.3 + 0.1,
-          type: types[Math.floor(Math.random() * types.length)]
-        });
-      }
-      shapesRef.current = shapes;
+      // Supprimé - on garde seulement les bulles
+      shapesRef.current = [];
     };
 
     const drawBubble = (bubble: Bubble) => {
@@ -138,34 +124,24 @@ export default function AnimatedBackground() {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Animate bubbles
+      // Animate bubbles avec mouvement plus smooth
       bubblesRef.current.forEach(bubble => {
         bubble.y -= bubble.speed;
-        bubble.opacity = Math.sin(Date.now() * 0.001 + bubble.x * 0.01) * 0.3 + 0.2;
+        bubble.opacity = Math.sin(Date.now() * 0.0005 + bubble.x * 0.005) * 0.15 + 0.15;
+        
+        // Mouvement horizontal très subtil
+        bubble.x += Math.sin(Date.now() * 0.0003 + bubble.y * 0.002) * 0.2;
         
         if (bubble.y + bubble.size < 0) {
           bubble.y = canvas.height + bubble.size;
           bubble.x = Math.random() * canvas.width;
         }
         
+        // Garder les bulles dans les limites horizontales
+        if (bubble.x < -bubble.size) bubble.x = canvas.width + bubble.size;
+        if (bubble.x > canvas.width + bubble.size) bubble.x = -bubble.size;
+        
         drawBubble(bubble);
-      });
-
-      // Animate floating shapes
-      shapesRef.current.forEach(shape => {
-        shape.y -= shape.speed;
-        shape.rotation += shape.rotationSpeed;
-        shape.x += Math.sin(Date.now() * 0.001 + shape.y * 0.01) * 0.5;
-        
-        if (shape.y + shape.size < 0) {
-          shape.y = canvas.height + shape.size;
-          shape.x = Math.random() * canvas.width;
-        }
-        
-        if (shape.x < -shape.size) shape.x = canvas.width + shape.size;
-        if (shape.x > canvas.width + shape.size) shape.x = -shape.size;
-        
-        drawShape(shape);
       });
 
       animationRef.current = requestAnimationFrame(animate);

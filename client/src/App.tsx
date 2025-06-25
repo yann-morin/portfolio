@@ -22,9 +22,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <FloatingOrbs />
         <AnimatedBackground />
-        <FloatingParticles />
         <Toaster />
         <Router />
       </TooltipProvider>
