@@ -319,6 +319,15 @@ export default function ContactSection() {
                                     </Label>
                                   </div>
                                 </div>
+                                <div className="glass-card p-4 rounded-xl hover-glow">
+                                  <div className="flex items-center space-x-3">
+                                    <RadioGroupItem value="custom" id="pro" className="border-quaternary text-quaternary" />
+                                    <Label htmlFor="pro" className="flex-1 cursor-pointer">
+                                      <div className="font-semibold text-foreground">Devis Personnalisé</div>
+                                      <div className="text-sm text-muted-foreground">Tarif adapté</div>
+                                    </Label>
+                                  </div>
+                                </div>
                               </RadioGroup>
                             </FormControl>
                             <FormMessage />
