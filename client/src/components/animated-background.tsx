@@ -41,24 +41,25 @@ export default function AnimatedBackground() {
     const createBubbles = () => {
       const bubbles: Bubble[] = [];
       const colors = [
-        'rgba(139, 92, 246, 0.4)', // purple
-        'rgba(59, 130, 246, 0.4)',  // blue
-        'rgba(16, 185, 129, 0.4)',  // emerald
-        'rgba(245, 158, 11, 0.4)',  // amber
-        'rgba(236, 72, 153, 0.4)',  // pink
+        'rgba(139, 92, 246, 0.8)', // purple
+        'rgba(59, 130, 246, 0.8)',  // blue
+        'rgba(16, 185, 129, 0.8)',  // emerald
+        'rgba(245, 158, 11, 0.8)',  // amber
+        'rgba(236, 72, 153, 0.8)',  // pink
       ];
 
       for (let i = 0; i < 6; i++) {
         bubbles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          size: Math.random() * 60 + 30,
+          size: Math.random() * 80 + 50,
           speed: Math.random() * 0.8 + 0.4,
-          opacity: Math.random() * 0.4 + 0.3,
+          opacity: 0.6,
           color: colors[Math.floor(Math.random() * colors.length)]
         });
       }
       bubblesRef.current = bubbles;
+      console.log('Bubbles created:', bubbles.length);
     };
 
     const createFloatingShapes = () => {
@@ -67,18 +68,29 @@ export default function AnimatedBackground() {
     };
 
     const drawBubble = (bubble: Bubble) => {
+      ctx.save();
+      ctx.globalAlpha = bubble.opacity;
+      
+      // Dessiner le cercle principal
+      ctx.fillStyle = bubble.color;
+      ctx.beginPath();
+      ctx.arc(bubble.x, bubble.y, bubble.size, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // Ajouter un effet de gradient pour plus de beauté
       const gradient = ctx.createRadialGradient(
-        bubble.x, bubble.y, 0,
+        bubble.x - bubble.size * 0.3, bubble.y - bubble.size * 0.3, 0,
         bubble.x, bubble.y, bubble.size
       );
-      gradient.addColorStop(0, bubble.color);
+      gradient.addColorStop(0, 'rgba(255, 255, 255, 0.3)');
       gradient.addColorStop(1, 'transparent');
-
-      ctx.globalAlpha = bubble.opacity;
+      
       ctx.fillStyle = gradient;
       ctx.beginPath();
       ctx.arc(bubble.x, bubble.y, bubble.size, 0, Math.PI * 2);
       ctx.fill();
+      
+      ctx.restore();
     };
 
     const drawShape = (shape: FloatingShape) => {
@@ -127,7 +139,7 @@ export default function AnimatedBackground() {
       // Animate bubbles avec mouvement plus smooth
       bubblesRef.current.forEach(bubble => {
         bubble.y -= bubble.speed;
-        bubble.opacity = Math.sin(Date.now() * 0.001 + bubble.x * 0.01) * 0.2 + 0.4;
+        bubble.opacity = Math.sin(Date.now() * 0.001 + bubble.x * 0.01) * 0.2 + 0.6;
         
         // Mouvement horizontal très subtil
         bubble.x += Math.sin(Date.now() * 0.0008 + bubble.y * 0.005) * 0.3;
