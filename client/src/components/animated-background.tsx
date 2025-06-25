@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react';
 
 interface Bubble {
   x: number;
@@ -17,7 +17,7 @@ interface FloatingShape {
   rotation: number;
   rotationSpeed: number;
   opacity: number;
-  type: "circle" | "triangle" | "square";
+  type: 'circle' | 'triangle' | 'square';
 }
 
 export default function AnimatedBackground() {
@@ -30,7 +30,7 @@ export default function AnimatedBackground() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
     const resizeCanvas = () => {
@@ -41,11 +41,11 @@ export default function AnimatedBackground() {
     const createBubbles = () => {
       const bubbles: Bubble[] = [];
       const colors = [
-        "rgba(139, 92, 246, 0.4)", // purple
-        "rgba(59, 130, 246, 0.4)", // blue
-        "rgba(16, 185, 129, 0.4)", // emerald
-        "rgba(245, 158, 11, 0.4)", // amber
-        "rgba(236, 72, 153, 0.4)", // pink
+        'rgba(139, 92, 246, 0.4)', // purple
+        'rgba(59, 130, 246, 0.4)',  // blue
+        'rgba(16, 185, 129, 0.4)',  // emerald
+        'rgba(245, 158, 11, 0.4)',  // amber
+        'rgba(236, 72, 153, 0.4)',  // pink
       ];
 
       for (let i = 0; i < 6; i++) {
@@ -55,7 +55,7 @@ export default function AnimatedBackground() {
           size: Math.random() * 60 + 30,
           speed: Math.random() * 0.8 + 0.4,
           opacity: Math.random() * 0.4 + 0.3,
-          color: colors[Math.floor(Math.random() * colors.length)],
+          color: colors[Math.floor(Math.random() * colors.length)]
         });
       }
       bubblesRef.current = bubbles;
@@ -68,15 +68,11 @@ export default function AnimatedBackground() {
 
     const drawBubble = (bubble: Bubble) => {
       const gradient = ctx.createRadialGradient(
-        bubble.x,
-        bubble.y,
-        0,
-        bubble.x,
-        bubble.y,
-        bubble.size,
+        bubble.x, bubble.y, 0,
+        bubble.x, bubble.y, bubble.size
       );
       gradient.addColorStop(0, bubble.color);
-      gradient.addColorStop(1, "transparent");
+      gradient.addColorStop(1, 'transparent');
 
       ctx.globalAlpha = bubble.opacity;
       ctx.fillStyle = gradient;
@@ -90,28 +86,23 @@ export default function AnimatedBackground() {
       ctx.globalAlpha = shape.opacity;
       ctx.translate(shape.x, shape.y);
       ctx.rotate(shape.rotation);
-
-      const gradient = ctx.createLinearGradient(
-        -shape.size,
-        -shape.size,
-        shape.size,
-        shape.size,
-      );
-      gradient.addColorStop(0, "rgba(255, 255, 255, 0.2)");
-      gradient.addColorStop(1, "rgba(255, 255, 255, 0.05)");
-
+      
+      const gradient = ctx.createLinearGradient(-shape.size, -shape.size, shape.size, shape.size);
+      gradient.addColorStop(0, 'rgba(255, 255, 255, 0.2)');
+      gradient.addColorStop(1, 'rgba(255, 255, 255, 0.05)');
+      
       ctx.fillStyle = gradient;
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
       ctx.lineWidth = 1;
 
       switch (shape.type) {
-        case "circle":
+        case 'circle':
           ctx.beginPath();
           ctx.arc(0, 0, shape.size, 0, Math.PI * 2);
           ctx.fill();
           ctx.stroke();
           break;
-        case "triangle":
+        case 'triangle':
           ctx.beginPath();
           ctx.moveTo(0, -shape.size);
           ctx.lineTo(-shape.size * 0.866, shape.size * 0.5);
@@ -120,7 +111,7 @@ export default function AnimatedBackground() {
           ctx.fill();
           ctx.stroke();
           break;
-        case "square":
+        case 'square':
           ctx.beginPath();
           ctx.rect(-shape.size / 2, -shape.size / 2, shape.size, shape.size);
           ctx.fill();
@@ -134,23 +125,22 @@ export default function AnimatedBackground() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // Animate bubbles avec mouvement plus smooth
-      bubblesRef.current.forEach((bubble) => {
+      bubblesRef.current.forEach(bubble => {
         bubble.y -= bubble.speed;
-        bubble.opacity =
-          Math.sin(Date.now() * 0.001 + bubble.x * 0.01) * 0.2 + 0.4;
-
+        bubble.opacity = Math.sin(Date.now() * 0.001 + bubble.x * 0.01) * 0.2 + 0.4;
+        
         // Mouvement horizontal très subtil
         bubble.x += Math.sin(Date.now() * 0.0008 + bubble.y * 0.005) * 0.3;
-
+        
         if (bubble.y + bubble.size < 0) {
           bubble.y = canvas.height + bubble.size;
           bubble.x = Math.random() * canvas.width;
         }
-
+        
         // Garder les bulles dans les limites horizontales
         if (bubble.x < -bubble.size) bubble.x = canvas.width + bubble.size;
         if (bubble.x > canvas.width + bubble.size) bubble.x = -bubble.size;
-
+        
         drawBubble(bubble);
       });
 
@@ -168,10 +158,10 @@ export default function AnimatedBackground() {
       createFloatingShapes();
     };
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener('resize', handleResize);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
@@ -181,8 +171,8 @@ export default function AnimatedBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none -z-10"
-      style={{ background: "transparent" }}
+      className="fixed inset-0 pointer-events-none z-10"
+      style={{ background: 'transparent' }}
     />
   );
 }
